@@ -30,6 +30,7 @@ setup(
         "flex_gemm.utils",
         "flex_gemm.ops",
         "flex_gemm.ops.spconv",
+        "flex_gemm.ops.grid_sample",
         "flex_gemm.kernels",
         "flex_gemm.kernels.triton",
         "flex_gemm.kernels.triton.spconv",
