@@ -451,12 +451,12 @@ __global__ void hashmap_insert_3d_idx_as_val_cuda_kernel(
 
 __global__ void hashmap_insert_3d_idx_as_val_cuda_kernel_64(
     const uint64_t N,
-    const uint64_t M,
+    const uint32_t M,
     const int W,
     const int H,
     const int D,
     uint64_t* __restrict__ hashmap,
-    const int64_t* __restrict__ coords
+    const int32_t* __restrict__ coords
 ) {
     uint64_t thread_id = blockIdx.x * blockDim.x + threadIdx.x;
     if (thread_id < M) {
@@ -513,7 +513,7 @@ void hashmap_insert_3d_idx_as_val_cuda(
             H,
             D,
             hashmap.data_ptr<uint64_t>(),
-            coords.data_ptr<int64_t>()
+            coords.data_ptr<int32_t>()
         );
     } else {
         TORCH_CHECK(false, "Unsupported data type");
