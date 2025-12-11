@@ -369,8 +369,10 @@ def load_autotune_cache(path=None):
             cache = json.load(f)
 
     device_name = torch.cuda.get_device_name()
-    if device_name not in cache:
+    if device_name not in cache and "*" not in cache:
         return
+    if "*" in cache and device_name not in cache:
+        device_name = "*"
 
     def load_cache(full_module_name):
         module = importlib.import_module(full_module_name)
